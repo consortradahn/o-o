@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amor ❤️</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e1a2f, #2a1e3c, #1a1f3a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Corazones flotantes de fondo */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 120, 150, 0.3);
+            font-size: 20px;
+            animation: floatHeart 10s linear infinite;
+            user-select: none;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 90%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+            position: relative;
+            margin: 20px;
+            transition: all 0.5s ease;
+        }
+
+        /* Título principal */
+        .main-title {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 0 0 10px #ff9a9e, 0 0 20px #fad0c4;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 0.5s;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #f0e6ff;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Carta (efecto máquina de escribir) */
+        .letter-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            border-left: 5px solid #ff7e9f;
+        }
+
+        .typewriter {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #f3e6ff;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            min-height: 200px;
+        }
+
+        .typewriter span {
+            opacity: 0;
+            animation: reveal 0.1s forwards;
+        }
+
+        @keyframes reveal {
+            to { opacity: 1; }
+        }
+
+        /* Botón corazón */
+        .heart-btn {
+            background: none;
+            border: 2px solid #ff7e9f;
+            color: #ff7e9f;
+            font-size: 2rem;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255, 126, 159, 0.1);
+            box-shadow: 0 0 15px #ff7e9f;
+            animation: pulse 2s infinite;
+        }
+
+        .heart-btn:hover {
+            transform: scale(1.1);
+            background: #ff7e9f;
+            color: white;
+            box-shadow: 0 0 30px #ff7e9f;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px #ff7e9f; }
+            50% { box-shadow: 0 0 30px #ff7e9f; }
+            100% { box-shadow: 0 0 10px #ff7e9f; }
+        }
+
+        /* Sección sorpresa (oculta al inicio) */
+        .surprise {
+            display: none;
+            text-align: center;
+            color: white;
+        }
+
+        .surprise h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px gold;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px gold; }
+            50% { text-shadow: 0 0 30px gold, 0 0 50px orange; }
+            100% { text-shadow: 0 0 10px gold; }
+        }
+
+        .surprise p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        /* Contador */
+        .countdown {
+            margin-top: 30px;
+            text-align: center;
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        .countdown i {
+            color: #ff7e9f;
+            margin-right: 8px;
+        }
+
+        #days-counter {
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        /* Canvas para partículas y pétalos */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corazones flotantes de fondo -->
+    <div class="floating-hearts" id="floating-hearts"></div>
+
+    <!-- Canvas para partículas (estrellas) y pétalos -->
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container">
+        <!-- Título y subtítulo -->
+        <h1 class="main-title">Para mi amor </h1>
+        <p class="subtitle">Esto es para ti, porque cada palabra nace del corazón</p>
+
+        <!-- Sección de la carta -->
+        <div id="letter-section">
+            <div class="letter-container">
+                <div id="typewriter-text" class="typewriter"></div>
+            </div>
+            <button id="surprise-btn" class="heart-btn" style="display: none;">
+                <i class="fas fa-heart"></i>
+            </button>
+        </div>
+
+        <!-- Sección sorpresa (se muestra después del clic) -->
+        <div id="surprise-section" class="surprise">
+            <h2>✨ Eres la razón por la que creo en el amor eterno. ✨</h2>
+            <p>Te amo, angie</p>
+        </div>
+
+        <!-- Contador de tiempo para fecha especial -->
+        <div class="countdown">
+            <i class="fas fa-clock"></i> Faltan <span id="days-counter">0</span> días para nuestra fecha especial ❤️
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ------------------------------------------------------------
+            // 1. CONFIGURACIÓN PERSONALIZABLE
+            // ------------------------------------------------------------
+            const novia = "angie";  // <--- CAMBIA AQUÍ EL NOMBRE
+            const fechaEspecial = "Oct 15, 2026 00:00:00"; // <--- CAMBIA AQUÍ LA FECHA (ej: "Oct 15, 2026")
+
+            // Texto romántico para la carta (efecto máquina de escribir)
+            const poem = `Mi amor ${novia},
+
+Desde que llegaste a mi vida, cada día tiene un brillo especial. Tus ojos son mi refugio, tu sonrisa mi paz. 
+Hoy quiero recordarte lo infinita que es mi admiración por ti. Eres como la luna que guía mis noches y el sol que despierta mis sueños.
+
+El tiempo a tu lado es un suspiro eterno, y cada instante lo guardo como un tesoro. Prometo amarte más allá de las estrellas, más allá del universo que nos contempla.
+
+Con todo mi ser, siempre tuyo. ❤️`;
+
+            // ------------------------------------------------------------
+            // 2. EFECTO MÁQUINA DE ESCRIBIR
+            // ------------------------------------------------------------
+            const typewriterElement = document.getElementById('typewriter-text');
+            const surpriseBtn = document.getElementById('surprise-btn');
+            const letterSection = document.getElementById('letter-section');
+            const surpriseSection = document.getElementById('surprise-section');
+
+            let i = 0;
+            function typeWriter() {
+                if (i < poem.length) {
+                    // Crear un span para cada carácter (permite animación individual)
+                    const span = document.createElement('span');
+                    span.textContent = poem.charAt(i);
+                    typewriterElement.appendChild(span);
+                    i++;
+                    setTimeout(typeWriter, 50); // velocidad de escritura
+                } else {
+                    // Mostrar botón corazón cuando termine
+                    surpriseBtn.style.display = 'flex';
+                }
+            }
+
+            // Iniciar máquina de escribir al cargar
+            window.addEventListener('load', typeWriter);
+
+            // ------------------------------------------------------------
+            // 3. BOTÓN SORPRESA (muestra la sección con animación de estrellas)
+            // ------------------------------------------------------------
+            surpriseBtn.addEventListener('click', function() {
+                // Ocultar carta y botón
+                letterSection.style.display = 'none';
+                // Mostrar sorpresa
+                surpriseSection.style.display = 'block';
+                // Disparar animación de partículas (estrellas) y luego mensaje
+                initParticles(true); // true indica modo "sorpresa" (estrellas más densas)
+                // También lanzar corazones flotantes extra (opcional)
+                createFloatingHearts(20);
+            });
+
+            // ------------------------------------------------------------
+            // 4. CONTADOR DE DÍAS PARA FECHA ESPECIAL
+            // ------------------------------------------------------------
+            function updateCountdown() {
+                const targetDate = new Date(fechaEspecial).getTime();
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference > 0) {
+                    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                    document.getElementById('days-counter').textContent = days;
+                } else {
+                    document.getElementById('days-counter').textContent = "¡Hoy!";
+                }
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 86400000); // actualizar cada día
+
+            // ------------------------------------------------------------
+            // 5. CORAZONES FLOTANTES DE FONDO (generados con CSS)
+            // ------------------------------------------------------------
+            function createFloatingHearts(count = 15) {
+                const container = document.getElementById('floating-hearts');
+                // Limpiar corazones anteriores (opcional)
+                // container.innerHTML = '';
+                for (let i = 0; i < count; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = (5 + Math.random() * 10) + 's';
+                    heart.style.fontSize = (15 + Math.random() * 30) + 'px';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    container.appendChild(heart);
+                }
+            }
+            createFloatingHearts(25);
+
+            // ------------------------------------------------------------
+            // 6. PARTÍCULAS (estrellas) con canvas + pétalos al hacer clic en el fondo
+            // ------------------------------------------------------------
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            let isSurpriseMode = false; // Para modo sorpresa (más estrellas)
+
+            function resizeCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+
+            class Particle {
+                constructor(x, y, isPetal = false) {
+                    this.x = x || Math.random() * width;
+                    this.y = y || Math.random() * height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedY = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.opacity = Math.random() * 0.5 + 0.3;
+                    this.isPetal = isPetal;
+                    if (isPetal) {
+                        // Los pétalos son más grandes y de color rosa
+                        this.size = Math.random() * 6 + 4;
+                        this.color = `rgba(255, 182, 193, ${this.opacity})`; // rosa claro
+                    } else {
+                        // Estrellas: amarillo/blanco
+                        this.color = `rgba(255, 255, 200, ${this.opacity})`;
+                    }
+                }
+
+                update() {
+                    this.y += this.speedY;
+                    this.x += this.speedX;
+                    // Reiniciar si salen de la pantalla
+                    if (this.y > height) {
+                        this.y = 0;
+                        this.x = Math.random() * width;
+                    }
+                    if (this.x < 0) this.x = width;
+                    if (this.x > width) this.x = 0;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    if (this.isPetal) {
+                        // Dibujar pétalo como un óvalo
+                        ctx.ellipse(this.x, this.y, this.size * 0.7, this.size, 0, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                    } else {
+                        // Estrella: círculo
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                    }
+                    ctx.fill();
+                }
+            }
+
+            function initParticles(surprise = false) {
+                isSurpriseMode = surprise;
+                const count = surprise ? 150 : 80; // más partículas en modo sorpresa
+                particles = [];
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animateParticles);
+            }
+
+            // Iniciar partículas normales
+            resizeCanvas();
+            initParticles(false);
+            animateParticles();
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                // Reajustar partículas al tamaño (opcional)
+            });
+
+            // ------------------------------------------------------------
+            // 7. PÉTALOS AL HACER CLIC EN EL FONDO
+            // ------------------------------------------------------------
+            document.body.addEventListener('click', function(e) {
+                // Crear varios pétalos en la posición del clic
+                for (let i = 0; i < 8; i++) {
+                    const petal = new Particle(e.clientX, e.clientY, true);
+                    // Variar velocidad y dirección
+                    petal.speedY = Math.random() * 3 + 1;
+                    petal.speedX = (Math.random() - 0.5) * 2;
+                    particles.push(petal);
+                }
+                // Limitar número de partículas para no saturar
+                if (particles.length > 400) {
+                    particles.splice(0, 100);
+                }
+            });
+
+            // También generar pétalos cada cierto tiempo (opcional)
+            setInterval(() => {
+                if (!isSurpriseMode) {
+                    // Crear algunos pétalos aleatorios
+                    for (let i = 0; i < 3; i++) {
+                        particles.push(new Particle(Math.random() * width, Math.random() * height, true));
+                    }
+                }
+            }, 3000);
+
+        })();
+    </script>
+</body>
+</html>
